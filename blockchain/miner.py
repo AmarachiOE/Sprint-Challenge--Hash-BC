@@ -23,7 +23,18 @@ def proof_of_work(last_proof):
 
     print("Searching for next proof")
     proof = 0
+
     #  TODO: Your code here
+
+    # Determine last hash to pass in to valid_proof
+    last_proof_string = f"{last_proof}".encode()
+    last_proof_hash = hashlib.sha256(last_proof_string).hexdigest()
+    
+
+    while not valid_proof(last_proof_hash, proof):
+        proof += 1
+
+
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -38,7 +49,13 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    pass
+
+    # Hash the proof
+    guess_proof_string = f"{proof}".encode()
+    guess_proof_hash = hashlib.sha256(guess_proof_string).hexdigest()
+
+    # Compare last_hash with guess proof hash -> T/F
+    return last_hash[-6:] == guess_proof_hash[:6]
 
 
 if __name__ == '__main__':
@@ -52,13 +69,14 @@ if __name__ == '__main__':
 
     # Load or create ID
     f = open("my_id.txt", "r")
-    id = f.read()
+    id = f"Amarachi-{f.read()}"
     print("ID is", id)
     f.close()
     if len(id) == 0:
         f = open("my_id.txt", "w")
         # Generate a globally unique ID
-        id = str(uuid4()).replace('-', '')
+        # id = str(uuid4()).replace('-', '')
+        id = f"Amarachi-{str(uuid4()).replace('-', '')}"
         print("Created new ID: " + id)
         f.write(id)
         f.close()
