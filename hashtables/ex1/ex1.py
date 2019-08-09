@@ -1,15 +1,18 @@
 #  Hint:  You may not need all of these.  Remove the unused functions.
 from hashtables import (HashTable,
                         hash_table_insert,
-                        hash_table_remove,
+                        # hash_table_remove,
                         hash_table_retrieve,
-                        hash_table_resize)
-
-# def returnTuple():
-#     a = (2, 7)
-#     return a
-
-# print(returnTuple())
+                        # hash_table_resize)
+                        
+# Pseudocode:
+# 1. loop: insert each item in list into HT
+# 2. loop: find difference -> difference = limit - value in weight list
+# 3. if there are other items in HT (storage > 0), check if any keys equal the difference 
+# 4. so pass difference as key in retrieve function
+# 5. if retrieve functions returns a value (which is the index), save it
+# 6. return it in tuple with the iterator i, which is the value we want to return - find max/min values
+# 7. return None if result never found
 
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
@@ -17,14 +20,6 @@ def get_indices_of_item_weights(weights, length, limit):
     """
     YOUR CODE HERE
     """
-    # Pseudocode:
-    # 1. loop: insert each item in list into HT
-    # 2. loop: find difference -> difference = limit - value in weight list
-    # 3. if there are other items in HT (storage > 0), check if any keys equal the difference 
-    # 4. so pass difference as key in retrieve function
-    # 5. if retrieve functions returns a value (which is the index), save it
-    # 6. return it in tuple with the iterator i, which is the value we want to return - find max/min values
-    # 7. return None if result never found
     
     result = None
 
@@ -59,6 +54,12 @@ def print_answer(answer):
 
 
 # TESTING
+
+# def returnTuple():
+#     a = (2, 7)
+#     return a
+
+# print(returnTuple())
 
 weights1 = [ 4, 6, 10, 15, 16 ]
 answer_1 = get_indices_of_item_weights(weights1, len(weights1), 21)
